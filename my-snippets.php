@@ -3,7 +3,7 @@
  * Plugin Name: My Snippetss
  * Plugin URI: http://justintadlock.com/archives/2009/12/03/my-snippets-wordpress-plugin
  * Description: Add custom snippets to your widget areas (sidebars) on a post-by-post basis.
- * Version: 0.1.0
+ * Version: 0.2.0-alpha
  * Author: Justin Tadlock
  * Author URI: http://justintadlock.com
  *
