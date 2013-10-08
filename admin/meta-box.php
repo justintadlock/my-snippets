@@ -32,6 +32,11 @@ final class My_Snippets_Meta_Boxes {
 	 */
 	public function add_meta_boxes( $post_type ) {
 
+		$post_type_object = get_post_type_object( $post_type );
+
+		if ( 'page' !== $post_type && false === $post_type_object->publicly_queryable )
+			return;
+
 		add_meta_box( 
 			'my-snippets', 
 			__( 'My Snippets', 'my-snippets' ), 
