@@ -39,6 +39,14 @@ class My_Snippets_Widget_Snippet extends WP_Widget {
 			$widget_options,                // $this->widget_options
 			$control_options                // $this->control_options
 		);
+
+		/* Apply filters to the snippet content. */
+		add_filter( 'my_snippets_content', 'wptexturize' );
+		add_filter( 'my_snippets_content', 'convert_smilies' );
+		add_filter( 'my_snippets_content', 'convert_chars' );
+		add_filter( 'my_snippets_content', 'wpautop' );
+		add_filter( 'my_snippets_content', 'shortcode_unautop' );
+		add_filter( 'my_snippets_content', 'do_shortcode' );
 	}
 
 	/**
@@ -77,7 +85,10 @@ class My_Snippets_Widget_Snippet extends WP_Widget {
 			echo $before_title . apply_filters( 'widget_title',  $instance['title'], $instance, $this->id_base ) . $after_title;
 
 		/* Output the snippet. */
-		printf( '<div class="snippet-content">%s</div>', do_shortcode( $snippet_content ) );
+		printf( 
+			'<div class="snippet-content">%s</div>', 
+			apply_filters( 'my_snippets_content', $snippet_content )
+		);
 
 		/* Close the theme's widget wrapper. */
 		echo $after_widget;
