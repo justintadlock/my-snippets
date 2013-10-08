@@ -30,13 +30,13 @@ final class My_Snippets_Meta_Boxes {
 	 * @access public
 	 * @return void
 	 */
-	public function add_meta_boxes( $post ) {
+	public function add_meta_boxes( $post_type ) {
 
 		add_meta_box( 
 			'my-snippets', 
 			__( 'My Snippets', 'my-snippets' ), 
 			array( $this, 'snippet_meta_box' ), 
-			$post->post_type, 
+			$post_type, 
 			'normal', 
 			'low' 
 		);
