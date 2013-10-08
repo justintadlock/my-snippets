@@ -11,62 +11,114 @@
 
 class My_Snippets_Widget_Snippet extends WP_Widget {
 
-	function My_Snippets_Widget_Snippet() {
-		$widget_ops = array( 'classname' => 'snippet', 'description' => __('Displays custom post snippets on a post-by-post basis.', 'my-snippets') );
-		$control_ops = array( 'width' => 200, 'height' => 350, 'id_base' => 'my-snippet-widget' );
-		$this->WP_Widget( 'my-snippet-widget', __('Snippet', 'my-snippets'), $widget_ops, $control_ops );
+	/**
+	 * Set up the widget's unique name, ID, class, description, and other options.
+	 *
+	 * @since  0.2.0
+	 * @access public
+	 * @return void
+	 */
+	public function __construct() {
+
+		/* Set up the widget options. */
+		$widget_options = array(
+			'classname'   => 'snippet',
+			'description' => esc_html__( 'Displays custom post snippets on a post-by-post basis.', 'my-snippets' )
+		);
+
+		/* Set up the widget control options. */
+		$control_options = array(
+			'width'  => 200,
+			'height' => 350
+		);
+
+		/* Create the widget. */
+		$this->WP_Widget(
+			'snippet',                      // $this->id_base
+			__( 'Snippet', 'my-snippets' ), // $this->name
+			$widget_options,                // $this->widget_options
+			$control_options                // $this->control_options
+		);
 	}
 
-	function widget( $args, $instance ) {
-		global $wp_query;
+	/**
+	 * Outputs the widget based on the arguments input through the widget controls.
+	 *
+	 * @since  0.1.0
+	 * @access public
+	 * @return void
+	 */
+	public function widget( $sidebar, $instance ) {
+		extract( $sidebar );
 
-		extract( $args );
-
+		/* If not viewing a single post, bail. */
 		if ( !is_singular() )
+			return;
+
+		/* Get the current post ID. */
+		$post_id = get_queried_object_id();
+
+		/* Get the snippet content and title. */
+		$snippet_content = get_post_meta( $post_id, 'Snippet',       true );
+		$snippet_title   = get_post_meta( $post_id, 'Snippet Title', true );
+
+		/* If there's no snippet content, bail. */
+		if ( empty( $snippet_content ) )
 			return false;
 
-		$id = $wp_query->get_queried_object_id();
+		/* If there's a custom snippet title, use it. Otherwise, default to the widget title. */
+		$instance['title'] = !empty( $snippet_title ) ? $snippet_title : $instance['title'];
 
-		$my_snippet = get_post_meta( $id, 'Snippet', true );
-
-		if ( empty( $my_snippet ) )
-			return false;
-
-		$my_snippet_title = get_post_meta( $id, 'Snippet Title', true );
-
-		if ( $my_snippet_title )
-			$title = apply_filters( 'widget_title', $my_snippet_title );
-		else
-			$title = apply_filters('widget_title', $instance['title'] );
-
+		/* Output the theme's widget wrapper. */
 		echo $before_widget;
 
-		if ( $title )
-			echo $before_title . $title . $after_title;
+		/* If a title was input by the user, display it. */
+		if ( !empty( $instance['title'] ) )
+			echo $before_title . apply_filters( 'widget_title',  $instance['title'], $instance, $this->id_base ) . $after_title;
 
-			echo '<div class="snippet-content">';
-			echo do_shortcode( $my_snippet );
-			echo '</div>';
+		/* Output the snippet. */
+		printf( '<div class="snippet-content">%s</div>', do_shortcode( $snippet_content ) );
 
+		/* Close the theme's widget wrapper. */
 		echo $after_widget;
 	}
 
-	function update( $new_instance, $old_instance ) {
-		$instance = $old_instance;
+	/**
+	 * Updates the widget control options for the particular instance of the widget.
+	 *
+	 * @since  0.1.0
+	 * @access public
+	 * @param  array  $new_instance
+	 * @param  array  $old_instance
+	 * @return array
+	 */
+	public function update( $new_instance, $old_instance ) {
+
 		$instance['title'] = strip_tags( $new_instance['title'] );
 
 		return $instance;
 	}
 
-	function form( $instance ) {
+	/**
+	 * Displays the widget control options in the Widgets admin screen.
+	 *
+	 * @since  0.1.0
+	 * @access public
+	 * @return void
+	 */
+	public function form( $instance ) {
 
-		//Defaults
-		$defaults = array( 'title' => __('Snippet', 'my-snippets') );
+		/* Set up the default form values. */
+		$defaults = array(
+			'title' => __('Snippet', 'my-snippets')
+		);
+
+		/* Merge the user-selected arguments with the defaults. */
 		$instance = wp_parse_args( (array) $instance, $defaults ); ?>
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Default Title:', 'my-snippets'); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" />
+			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo esc_attr( $instance['title'] ); ?>" />
 		</p>
 	<?php
 	}
