@@ -1,4 +1,13 @@
 <?php
+/**
+ * Creates a custom meta box for the plugin.
+ *
+ * @package   MySnippets
+ * @author    Justin Tadlock <justin@justintadlock.com>
+ * @copyright Copyright (c) 2009 - 2013, Justin Tadlock
+ * @link      http://themehybrid.com/plugins/my-snippets
+ * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ */
 
 final class My_Snippets_Meta_Boxes {
 

@@ -6,7 +6,11 @@
  * other post types, etc.). The widget only displays if metadata is available.  Otherwise, it displays
  * nothing.  The Default Title field only displays in the instance that no My Snippets Title is entered.
  *
- * @package MySnippets
+ * @package   MySnippets
+ * @author    Justin Tadlock <justin@justintadlock.com>
+ * @copyright Copyright (c) 2009 - 2013, Justin Tadlock
+ * @link      http://themehybrid.com/plugins/my-snippets
+ * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
 class My_Snippets_Widget_Snippet extends WP_Widget {
