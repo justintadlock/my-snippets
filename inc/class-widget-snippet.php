@@ -38,10 +38,10 @@ class My_Snippets_Widget_Snippet extends WP_Widget {
 
 		/* Create the widget. */
 		$this->WP_Widget(
-			'snippet',                      // $this->id_base
-			__( 'Snippet', 'my-snippets' ), // $this->name
-			$widget_options,                // $this->widget_options
-			$control_options                // $this->control_options
+			'snippet',                          // $this->id_base
+			__( 'My Snippets', 'my-snippets' ), // $this->name
+			$widget_options,                    // $this->widget_options
+			$control_options                    // $this->control_options
 		);
 
 		/* Apply filters to the snippet content. */
