@@ -80,7 +80,7 @@ final class My_Snippets_Meta_Boxes {
 		<p>
 			<label for="snippet"><?php _e( 'Snippet Content', 'my-snippets'); ?></label>
 			<textarea class="widefat" name="snippet-content" id="snippet-content" cols="60" rows="4"><?php echo esc_textarea( $snippet_content ); ?></textarea>
-			<span class="description"><?php _e( 'Add text, <acronym title="Hypertext Markup Language">HTML</acronym>, and/or shortcodes.', 'my-snippets' ); ?></span>
+			<span class="description"><?php _e( 'Add text, <abbr title="Hypertext Markup Language">HTML</abbr>, and/or shortcodes.', 'my-snippets' ); ?></span>
 		</p><?php
 	}
 
