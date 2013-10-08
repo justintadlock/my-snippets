@@ -30,38 +30,141 @@
  * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  */
 
-/* Set constant path to the my_snippets plugin directory. */
-define( MY_SNIPPETS_DIR, plugin_dir_path( __FILE__ ) );
-
-/* Launch the plugin. */
-add_action( 'plugins_loaded', 'my_snippets_plugin_init' );
-
 /**
- * Initialize the plugin.  This function loads the required files needed for the plugin
- * to run in the proper order and adds needed functions to the required hooks.
+ * Sets up the plugin.
  *
- * @since 0.1
+ * @since 0.2.0
  */
-function my_snippets_plugin_init() {
+final class My_Snippets_Plugin {
 
-	/* Load the translation of the plugin. */
-	load_plugin_textdomain( 'my-snippets', false, 'my-snippets/languages' );
+	/**
+	 * Holds the instance of this class.
+	 *
+	 * @since  0.2.0
+	 * @access private
+	 * @var    object
+	 */
+	private static $instance;
 
-	/* Load global functions for the WordPress admin. */
-	if ( is_admin() )
-		require_once( MY_SNIPPETS_DIR . '/meta-box.php' );
+	/**
+	 * Stores the directory path for this plugin.
+	 *
+	 * @since  0.2.0
+	 * @access private
+	 * @var    string
+	 */
+	private $directory_path;
 
-	add_action( 'widgets_init', 'my_snippets_load_widgets' );
+	/**
+	 * Stores the directory URI for this plugin.
+	 *
+	 * @since  0.2.0
+	 * @access private
+	 * @var    string
+	 */
+	private $directory_uri;
+
+	/**
+	 * Plugin setup.
+	 *
+	 * @since  0.2.0
+	 * @access public
+	 * @return void
+	 */
+	public function __construct() {
+
+		/* Set the properties needed by the plugin. */
+		add_action( 'plugins_loaded', array( $this, 'setup' ), 1 );
+
+		/* Internationalize the text strings used. */
+		add_action( 'plugins_loaded', array( $this, 'i18n' ), 2 );
+
+		/* Load the functions files. */
+		add_action( 'plugins_loaded', array( $this, 'includes' ), 3 );
+
+		/* Load the admin files. */
+		add_action( 'plugins_loaded', array( $this, 'admin' ), 4 );
+
+		/* Register widgets. */
+		add_action( 'widgets_init', array( $this, 'register_widgets' ) );
+	}
+
+	/**
+	 * Defines the directory path and URI for the plugin.
+	 *
+	 * @since  0.2.0
+	 * @access public
+	 * @return void
+	 */
+	public function setup() {
+		$this->directory_path = trailingslashit( plugin_dir_path( __FILE__ ) );
+		$this->directory_uri  = trailingslashit( plugin_dir_url(  __FILE__ ) );
+	}
+
+	/**
+	 * Loads the initial files needed by the plugin.
+	 *
+	 * @since  0.2.0
+	 * @access public
+	 * @return void
+	 */
+	public function includes() {
+		require_once( "{$this->directory_path}widget-snippet.php" );
+	}
+
+	/**
+	 * Loads the translation files.
+	 *
+	 * @since  0.2.0
+	 * @access public
+	 * @return void
+	 */
+	public function i18n() {
+
+		/* Load the translation of the plugin. */
+		load_plugin_textdomain( 'my-snippets', false, 'my-snippets/languages' );
+	}
+
+	/**
+	 * Loads the admin functions and files.
+	 *
+	 * @since  0.2.0
+	 * @access public
+	 * @return void
+	 */
+	public function admin() {
+
+		if ( is_admin() )
+			require_once( "{$this->directory_path}admin/meta-box.php" );
+	}
+
+	/**
+	 * Registers widgets.
+	 *
+	 * @since  0.2.0
+	 * @access public
+	 * @return void
+	 */
+	public function register_widgets() {
+		register_widget( 'My_Snippets_Widget_Snippet' );
+	}
+
+	/**
+	 * Returns the instance.
+	 *
+	 * @since  0.2.0
+	 * @access public
+	 * @return object
+	 */
+	public static function get_instance() {
+
+		if ( !self::$instance )
+			self::$instance = new self;
+
+		return self::$instance;
+	}
 }
 
-/**
- * Loads the widgets packaged with the My Snippets plugin.
- *
- * @since 0.1
- */
-function my_snippets_load_widgets() {
-	require_once( MY_SNIPPETS_DIR . '/widget-snippet.php' );
-	register_widget( 'My_Snippets_Widget_Snippet' );
-}
+My_Snippets_Plugin::get_instance();
 
 ?>
