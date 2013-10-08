@@ -2,7 +2,7 @@
 /**
  * Plugin Name: My Snippets
  * Plugin URI: http://themehybrid.com/plugins/my-snippets
- * Description: Add custom snippets to your widget areas (sidebars) on a post-by-post basis.
+ * Description: Add custom widget content on a per-post basis from the edit post screen.
  * Version: 0.2.0-alpha
  * Author: Justin Tadlock
  * Author URI: http://justintadlock.com
