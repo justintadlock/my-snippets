@@ -15,7 +15,7 @@ Allows you to add custom widget content on a post-by-post basis from the edit po
 
 The My Snippets plugin allows you to define custom widget content on a per-post basis from the edit post screen.
 
-While the plugin is both simple and powerful, it'll never replace such plugins as Widget Logic and Widget Context nor is that the plan. What it does is allow you to add custom widget content from the edit post screen without having to go to your Widgets screen in the admin for additional configuration
+While the plugin is both simple and powerful, it'll never replace such plugins as Widget Logic and Widget Context nor is that the plan. What it does is allow you to add custom widget content from the edit post screen without having to go to your Widgets screen in the admin for additional configuration.
 
 ### Features:
 
