@@ -109,7 +109,7 @@ final class My_Snippets_Plugin {
 	 * @return void
 	 */
 	public function includes() {
-		require_once( "{$this->directory_path}widget-snippet.php" );
+		require_once( "{$this->directory_path}class-widget-snippet.php" );
 	}
 
 	/**
