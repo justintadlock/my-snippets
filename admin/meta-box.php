@@ -51,7 +51,7 @@ final class My_Snippets_Meta_Boxes {
 	 * @param  array   $box
 	 * @return void
 	 */
-	public function details_meta_box( $post, $box ) { 
+	public function snippet_meta_box( $post, $box ) { 
 
 		wp_nonce_field( plugin_basename( __FILE__ ), 'my_snippets_meta_nonce' );
 
