@@ -3,9 +3,10 @@
 Contributors: greenshady
 Donate link: http://themehybrid.com/plugins/my-snippets
 Tags: widget, widgets, sidebar, meta, post, page, posts, pages
-Requires at least: 3.6
-Tested up to: 3.7
-Stable tag: 0.2.0
+Requires at least: 4.9
+Requires PHP: 5.6
+Tested up to: 5.0
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -26,11 +27,11 @@ While the plugin is both simple and powerful, it'll never replace such plugins a
 
 ### Professional Support
 
-If you need professional plugin support from me, the plugin author, you can access the support forums at [Theme Hybrid](http://themehybrid.com/support), which is a professional WordPress help/support site where I handle support for all my plugins and themes for a community of 40,000+ users (and growing).
+If you need professional plugin support from me, the plugin author, you can access the support forums at [Theme Hybrid](https://themehybrid.com), which is a professional WordPress help/support site where I handle support for all my plugins and themes for a community of 70,000+ users (and growing).
 
 ### Plugin Development
 
-If you're a theme author, plugin author, or just a code hobbyist, you can follow the development of this plugin on it's [GitHub repository](https://github.com/justintadlock/my-snippets). 
+If you're a theme author, plugin author, or just a code hobbyist, you can follow the development of this plugin on it's [GitHub repository](https://github.com/justintadlock/my-snippets).
 
 ### Donations
 
@@ -67,16 +68,17 @@ Yes, it works for all publicly-queryable post types.  Basically, if your post ty
 
 That's pretty much it.  This is an extremely simple plugin.
 
-== Upgrade Notice ==
-
-If upgrading from a version prior to 0.2.0, make sure to check the widget for this plugin. You may have to re-add it to your sidebar.
-
 == Screenshots ==
 
 1. My Snippets meta box on the edit post screen.
 2. My Snippets widget on the widgets screen.
 
 == Changelog ==
+
+### Version 1.0.0
+
+* Recoded the plugin to utilize modern PHP techniques.
+* Upgraded the widget to make sure it plays nicely with PHP 7+.
 
 ### Version 0.2.0
 

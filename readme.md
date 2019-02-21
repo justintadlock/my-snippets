@@ -13,6 +13,11 @@ While the plugin is both simple and powerful, it'll never replace such plugins a
 
 ## Changelog
 
+### Version 1.0.0
+
+* Recoded the plugin to utilize modern PHP techniques.
+* Upgraded the widget to make sure it plays nicely with PHP 7+.
+
 ### Version 0.2.0
 
 * Rewrote the code base to bring everything up to current WordPress standards.
@@ -24,10 +29,10 @@ While the plugin is both simple and powerful, it'll never replace such plugins a
 
 ## Professional Support
 
-If you need professional plugin support from me, the plugin author, you can access the support forums at [Theme Hybrid](http://themehybrid.com/support), which is a professional WordPress help/support site where I handle support for all my plugins and themes for a community of 40,000+ users (and growing).
+If you need professional plugin support from me, the plugin author, you can access the support forums at [Theme Hybrid](https://themehybrid.com), which is a professional WordPress help/support site where I handle support for all my plugins and themes for a community of 70,000+ users (and growing).
 
 ## Copyright and License
 
 This project is licensed under the [GNU GPL](http://www.gnu.org/licenses/old-licenses/gpl-2.0.html), version 2 or later.
 
-2009&thinsp;&ndash;&thinsp;2013 &copy; [Justin Tadlock](http://justintadlock.com).
+2009&thinsp;&ndash;&thinsp;2019 &copy; [Justin Tadlock](http://justintadlock.com).
